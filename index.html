@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GermanAir — Precision. Comfort. Excellence.</title>
+  <meta name="description" content="GermanAir operated by inclubworldAir — Premium private aviation with Diamond DA-40 and Pilatus PC-12 across Europe.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- ============================================================
+       WELCOME OVERLAY — Lufthansa-style greeting
+       ============================================================ -->
+  <div class="welcome-overlay" id="welcomeOverlay">
+    <div class="welcome-overlay__lines">
+      <div class="welcome-overlay__line"></div>
+      <div class="welcome-overlay__line"></div>
+      <div class="welcome-overlay__line"></div>
+    </div>
+    <div class="welcome-overlay__inner">
+      <div class="welcome-overlay__eyebrow">Private Aviation</div>
+      <div class="welcome-overlay__wordmark">GermanAir</div>
+      <div class="welcome-overlay__operator">operated by inclubworldAir</div>
+      <p class="welcome-overlay__tagline">
+        Willkommen an Bord — Welcome aboard.<br>
+        Where precision meets the finest European skies.
+      </p>
+      <div class="welcome-overlay__actions">
+        <button class="btn btn--gold" onclick="dismissOverlay()">Explore GermanAir</button>
+        <button class="btn btn--outline-light" onclick="openLogin()">Staff Login</button>
+      </div>
+      <div class="welcome-overlay__footer">GermanAir · operated by inclubworldAir · Germany</div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       LOGIN MODAL
+       ============================================================ -->
+  <div class="login-overlay" id="loginOverlay">
+    <div class="login-box">
+      <div class="login-box__header">
+        <div class="login-box__logo">GermanAir</div>
+        <div class="login-box__role">Operations Portal</div>
+      </div>
+      <div class="login-box__body">
+        <div class="login-box__field">
+          <label>Username</label>
+          <input type="text" id="loginUser" placeholder="Enter your username" autocomplete="username">
+        </div>
+        <div class="login-box__field">
+          <label>Password</label>
+          <input type="password" id="loginPass" placeholder="Enter your password" autocomplete="current-password">
+        </div>
+        <div class="login-box__error" id="loginError">Incorrect username or password. Please try again.</div>
+        <button class="login-box__submit" onclick="doLogin()">Sign In →</button>
+      </div>
+      <div class="login-box__footer">
+        <button class="login-box__back" onclick="closeLogin()">← Back to GermanAir</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       NAVIGATION
+       ============================================================ -->
+  <nav class="nav" id="mainNav">
+    <div class="nav__container">
+      <a href="index.html" class="nav__brand">
+        <span class="nav__logo-primary">GermanAir</span>
+        <span class="nav__logo-secondary">operated by inclubworldAir</span>
+      </a>
+      <ul class="nav__menu" id="navMenu">
+        <li><a href="#destinations" class="nav__link">Destinations</a></li>
+        <li><a href="fleet.html" class="nav__link">Fleet</a></li>
+        <li><a href="about.html" class="nav__link">About</a></li>
+        <li><a href="#contact" class="nav__link">Contact</a></li>
+      </ul>
+      <div class="nav__actions">
+        <a href="#book" class="nav__book-btn">Book a Flight</a>
+
+        <!-- Login button (shown when not authenticated) -->
+        <button class="nav__login-btn" id="navLoginBtn" onclick="openLogin()">
+          ↗ Staff Login
+        </button>
+
+        <!-- User dropdown (shown when authenticated) -->
+        <div class="nav__user" id="navUser" style="display:none">
+          <button class="nav__user-btn" id="navUserBtn" onclick="toggleDropdown()">
+            <span id="navUserName">Admin</span>
+            <span class="nav__caret">▼</span>
+          </button>
+          <div class="nav__dropdown" id="navDropdown">
+            <div class="nav__dropdown-user">
+              <div class="nav__dropdown-name" id="dropdownName">Administrator</div>
+              <div class="nav__dropdown-role">Operations Team</div>
+            </div>
+            <a href="tickets/index.html">
+              <span class="nav__drop-icon">✈</span> Flight Schedule
+            </a>
+            <a href="tickets/index.html">
+              <span class="nav__drop-icon">⎙</span> Travel Documents
+            </a>
+            <a href="tickets/index.html">
+              <span class="nav__drop-icon">👤</span> Passenger Data
+            </a>
+            <div class="nav__dropdown-sep"></div>
+            <button class="nav__dropdown-item nav__dropdown-logout" onclick="doLogout()">
+              <span class="nav__drop-icon">⏻</span> Sign Out
+            </button>
+          </div>
+        </div>
+
+        <button class="nav__toggle" id="navToggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <section class="hero">
+    <div class="hero__bg"></div>
+    <div class="hero__content">
+      <div class="hero__badge">Premium Private Aviation</div>
+      <h1 class="hero__title">
+        Precision.<br>
+        <em>Comfort.</em><br>
+        Excellence.
+      </h1>
+      <p class="hero__subtitle">
+        GermanAir offers bespoke private aviation across Europe. Two exceptional aircraft, curated for those who value time, comfort and the joy of flight.
+      </p>
+      <div class="hero__cta">
+        <a href="#book" class="btn btn--gold">Book Your Journey</a>
+        <a href="fleet.html" class="btn btn--outline-light">Discover the Fleet</a>
+      </div>
+    </div>
+    <div class="hero__scroll-hint">
+      <div class="hero__scroll-line"></div>
+      <span>Explore</span>
+    </div>
+  </section>
+
+  <!-- Stats Strip -->
+  <section class="stats-strip">
+    <div class="stats-strip__container">
+      <div class="stats-strip__item">
+        <span class="stats-strip__number">2</span>
+        <span class="stats-strip__label">Aircraft in Fleet</span>
+      </div>
+      <div class="stats-strip__divider"></div>
+      <div class="stats-strip__item">
+        <span class="stats-strip__number">3,300</span>
+        <span class="stats-strip__label">km Maximum Range</span>
+      </div>
+      <div class="stats-strip__divider"></div>
+      <div class="stats-strip__item">
+        <span class="stats-strip__number">9</span>
+        <span class="stats-strip__label">Passengers (PC-12)</span>
+      </div>
+      <div class="stats-strip__divider"></div>
+      <div class="stats-strip__item">
+        <span class="stats-strip__number">100%</span>
+        <span class="stats-strip__label">Private &amp; Exclusive</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Destinations -->
+  <section class="section" id="destinations">
+    <div class="section__container">
+      <div class="section__header">
+        <p class="section__eyebrow">Where We Fly</p>
+        <h2 class="section__title">Destinations Across Europe</h2>
+        <p class="section__subtitle">From the German heartland to the Mediterranean coast, GermanAir connects you to Europe's most coveted destinations in style.</p>
+      </div>
+      <div class="destinations__grid">
+        <div class="destination-card destination-card--featured">
+          <div class="destination-card__bg destination-card__bg--alps"></div>
+          <div class="destination-card__content">
+            <span class="destination-card__code">ZRH</span>
+            <h3 class="destination-card__name">Zurich</h3>
+            <p class="destination-card__country">Switzerland</p>
+            <span class="destination-card__aircraft">PC-12</span>
+          </div>
+        </div>
+        <div class="destination-card">
+          <div class="destination-card__bg destination-card__bg--paris"></div>
+          <div class="destination-card__content">
+            <span class="destination-card__code">LBG</span>
+            <h3 class="destination-card__name">Paris</h3>
+            <p class="destination-card__country">France</p>
+            <span class="destination-card__aircraft">PC-12</span>
+          </div>
+        </div>
+        <div class="destination-card">
+          <div class="destination-card__bg destination-card__bg--vienna"></div>
+          <div class="destination-card__content">
+            <span class="destination-card__code">VIE</span>
+            <h3 class="destination-card__name">Vienna</h3>
+            <p class="destination-card__country">Austria</p>
+            <span class="destination-card__aircraft">PC-12 · DA-40</span>
+          </div>
+        </div>
+        <div class="destination-card">
+          <div class="destination-card__bg destination-card__bg--med"></div>
+          <div class="destination-card__content">
+            <span class="destination-card__code">NCE</span>
+            <h3 class="destination-card__name">Nice</h3>
+            <p class="destination-card__country">France</p>
+            <span class="destination-card__aircraft">PC-12</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fleet Preview -->
+  <section class="section section--warm" id="fleet">
+    <div class="section__container">
+      <div class="section__header">
+        <p class="section__eyebrow">Our Fleet</p>
+        <h2 class="section__title">Two Aircraft. Infinite Possibilities.</h2>
+        <p class="section__subtitle">Each aircraft in the GermanAir fleet is chosen for its exceptional performance, safety record and passenger comfort.</p>
+      </div>
+      <div class="fleet__grid">
+        <div class="fleet-card">
+          <div class="fleet-card__image fleet-card__image--da40">
+            <span class="fleet-card__badge">DA-40</span>
+          </div>
+          <div class="fleet-card__content">
+            <div class="fleet-card__header">
+              <h3 class="fleet-card__name">Diamond DA-40</h3>
+              <span class="fleet-card__class">Light Aircraft</span>
+            </div>
+            <p class="fleet-card__description">The Diamond DA-40 Star represents the pinnacle of modern light aircraft design. With its advanced composite construction, Garmin G1000 glass cockpit and exceptional fuel efficiency, it offers an unmatched flying experience for shorter journeys.</p>
+            <div class="fleet-card__specs">
+              <div class="fleet-card__spec"><span class="fleet-card__spec-label">Passengers</span><span class="fleet-card__spec-value">1 – 3</span></div>
+              <div class="fleet-card__spec"><span class="fleet-card__spec-label">Range</span><span class="fleet-card__spec-value">~1,300 km</span></div>
+              <div class="fleet-card__spec"><span class="fleet-card__spec-label">Cruise Speed</span><span class="fleet-card__spec-value">210 km/h</span></div>
+              <div class="fleet-card__spec"><span class="fleet-card__spec-label">Avionics</span><span class="fleet-card__spec-value">Garmin G1000</span></div>
+            </div>
+            <a href="fleet.html" class="fleet-card__link">Learn More →</a>
+          </div>
+        </div>
+        <div class="fleet-card fleet-card--featured">
+          <div class="fleet-card__image fleet-card__image--pc12">
+            <span class="fleet-card__badge fleet-card__badge--gold">PC-12</span>
+          </div>
+          <div class="fleet-card__content">
+            <div class="fleet-card__header">
+              <h3 class="fleet-card__name">Pilatus PC-12</h3>
+              <span class="fleet-card__class fleet-card__class--gold">Executive Turboprop</span>
+            </div>
+            <p class="fleet-card__description">The Pilatus PC-12 — manufactured in Switzerland to exacting standards — combines the range and speed of a jet with the versatility to access smaller airports. With a pressurised cabin for up to 9 passengers, it redefines executive travel.</p>
+            <div class="fleet-card__specs">
+              <div class="fleet-card__spec"><span class="fleet-card__spec-label">Passengers</span><span class="fleet-card__spec-value">Up to 9</span></div>
+              <div class="fleet-card__spec"><span class="fleet-card__spec-label">Range</span><span class="fleet-card__spec-value">~3,300 km</span></div>
+              <div class="fleet-card__spec"><span class="fleet-card__spec-label">Cruise Speed</span><span class="fleet-card__spec-value">500 km/h</span></div>
+              <div class="fleet-card__spec"><span class="fleet-card__spec-label">Cabin</span><span class="fleet-card__spec-value">Pressurised</span></div>
+            </div>
+            <a href="fleet.html" class="fleet-card__link fleet-card__link--gold">Learn More →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section class="section experience">
+    <div class="section__container">
+      <div class="experience__layout">
+        <div class="experience__text">
+          <p class="section__eyebrow section__eyebrow--light">The GermanAir Experience</p>
+          <h2 class="section__title" style="color:#fff;">Flying As It Should Be</h2>
+          <p class="experience__lead">At GermanAir, we believe the journey is as important as the destination. Every flight is crafted to deliver exceptional comfort, efficiency and the kind of personal service larger carriers simply cannot offer.</p>
+          <div class="experience__features">
+            <div class="experience__feature"><div class="experience__feature-icon">◆</div><div><h4>Your Schedule</h4><p>Depart when it suits you. No fixed timetables, no missed connections.</p></div></div>
+            <div class="experience__feature"><div class="experience__feature-icon">◆</div><div><h4>Private Terminals</h4><p>Access FBO facilities and skip crowded commercial terminals entirely.</p></div></div>
+            <div class="experience__feature"><div class="experience__feature-icon">◆</div><div><h4>More Destinations</h4><p>Reach airports that commercial airlines don't serve — closer to your goal.</p></div></div>
+            <div class="experience__feature"><div class="experience__feature-icon">◆</div><div><h4>Personalised Service</h4><p>Your preferences are noted, prepared and delivered — every time.</p></div></div>
+          </div>
+        </div>
+        <div class="experience__visual">
+          <div class="experience__img-1"></div>
+          <div class="experience__img-2"></div>
+          <div class="experience__quote-card">
+            <p class="experience__quote">"The Pilatus PC-12 is the finest single-engine aircraft ever built. We chose it because our passengers deserve nothing less."</p>
+            <cite>— GermanAir Operations</cite>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Booking CTA -->
+  <section class="booking-cta" id="book">
+    <div class="section__container">
+      <div class="booking-cta__inner">
+        <p class="section__eyebrow">Ready to Fly?</p>
+        <h2 class="booking-cta__title">Plan Your Next Journey</h2>
+        <p class="booking-cta__subtitle">Contact our team to discuss your travel requirements. We'll arrange everything from aircraft selection to ground transportation.</p>
+        <div class="booking-form">
+          <div class="booking-form__row">
+            <div class="booking-form__group">
+              <label>From</label>
+              <input type="text" placeholder="Departure city or airport">
+            </div>
+            <div class="booking-form__group">
+              <label>To</label>
+              <input type="text" placeholder="Destination">
+            </div>
+            <div class="booking-form__group">
+              <label>Date</label>
+              <input type="date">
+            </div>
+            <div class="booking-form__group">
+              <label>Passengers</label>
+              <select>
+                <option>1 passenger</option>
+                <option>2 passengers</option>
+                <option>3 passengers</option>
+                <option>4 – 9 passengers</option>
+              </select>
+            </div>
+          </div>
+          <div class="booking-form__row" style="grid-template-columns: 1fr 1fr; margin-top:0; margin-bottom:0;">
+            <div class="booking-form__group">
+              <label>Full Name</label>
+              <input type="text" placeholder="First and last name">
+            </div>
+            <div class="booking-form__group">
+              <label>Passport / ID Number</label>
+              <input type="text" placeholder="e.g. C01X00T47" style="text-transform:uppercase">
+            </div>
+          </div>
+          <div class="booking-form__row" style="grid-template-columns: 1fr 1fr 1fr; margin-top:0;">
+            <div class="booking-form__group">
+              <label>Nationality</label>
+              <input type="text" placeholder="DEU / GBR / FRA…" maxlength="3" style="text-transform:uppercase">
+            </div>
+            <div class="booking-form__group">
+              <label>Document Expiry</label>
+              <input type="date">
+            </div>
+            <div class="booking-form__group">
+              <label>Email</label>
+              <input type="email" placeholder="your@email.com">
+            </div>
+          </div>
+          <button class="btn btn--gold booking-form__submit">Request a Quote</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Preview -->
+  <section class="section" id="about">
+    <div class="section__container">
+      <div class="about-preview__layout">
+        <div class="about-preview__img-col">
+          <div class="about-preview__img"></div>
+        </div>
+        <div class="about-preview__text-col">
+          <p class="section__eyebrow">About Us</p>
+          <h2 class="section__title">GermanAir &amp;<br>inclubworldAir</h2>
+          <p>GermanAir is the premium aviation brand operated by inclubworldAir, delivering private air travel that combines German engineering precision with world-class hospitality.</p>
+          <p>Our philosophy draws from the finest European traditions — the precision of Swiss craftsmanship, the warmth of Alpine hospitality and the excellence Germany is renowned for the world over.</p>
+          <a href="about.html" class="btn btn--navy" style="margin-top:12px;">Our Story</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer" id="contact">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <div class="footer__logo">
+          <span class="footer__logo-primary">GermanAir</span>
+          <span class="footer__logo-secondary">operated by inclubworldAir</span>
+        </div>
+        <p class="footer__tagline">Precision. Comfort. Excellence.</p>
+        <div class="footer__contact-links">
+          <a href="mailto:info@germanair.de">info@germanair.de</a>
+          <a href="tel:+4989000000">+49 89 000 000</a>
+        </div>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4>Fly</h4>
+          <a href="#destinations">Destinations</a>
+          <a href="fleet.html">Our Fleet</a>
+          <a href="#book">Book a Flight</a>
+        </div>
+        <div class="footer__col">
+          <h4>Company</h4>
+          <a href="about.html">About GermanAir</a>
+          <a href="about.html#safety">Safety</a>
+        </div>
+        <div class="footer__col">
+          <h4>Legal</h4>
+          <a href="imprint.html">Impressum / Imprint</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#" onclick="openLogin(); return false;">Staff Login</a>
+          <a href="tickets/index.html" id="footerOpsLink" style="display:none">Flight Schedule</a>
+          <a href="tickets/index.html" id="footerDocsLink" style="display:none">Travel Documents</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>© 2025 GermanAir — operated by inclubworldAir. All rights reserved.</p>
+      <div class="footer__legal">
+        <a href="imprint.html">Imprint</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms &amp; Conditions</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+
+  <!-- ============================================================
+       AUTH + OVERLAY JAVASCRIPT
+       ============================================================ -->
+  <script>
+  // ── Credentials (change these for production) ──────────────────
+  const USERS = {
+    'admin':   { password: 'GermanAir2025', displayName: 'Administrator',    role: 'Operations Admin' },
+    'captain': { password: 'GermanAir2025', displayName: 'Flight Operations', role: 'Flight Captain'   },
+    'ops':     { password: 'GermanAir2025', displayName: 'Ground Operations', role: 'Ops Coordinator'  }
+  };
+
+  // ── Session helpers ───────────────────────────────────────────
+  // Uses localStorage (works across file:// paths) + URL token fallback
+  const Auth = {
+    key: 'ga_session',
+
+    login(username, password) {
+      const user = USERS[username.toLowerCase().trim()];
+      if (!user || user.password !== password) return false;
+      const data = {
+        username: username.toLowerCase(),
+        displayName: user.displayName,
+        role: user.role,
+        ts: Date.now()
+      };
+      try { localStorage.setItem(this.key, JSON.stringify(data)); } catch {}
+      return data;
+    },
+
+    logout() {
+      try { localStorage.removeItem(this.key); } catch {}
+    },
+
+    session() {
+      try { return JSON.parse(localStorage.getItem(this.key)); }
+      catch { return null; }
+    },
+
+    isLoggedIn() { return !!this.session(); }
+  };
+
+  // ── Overlay ────────────────────────────────────────────────────
+  function dismissOverlay() {
+    document.getElementById('welcomeOverlay').classList.add('fade-out');
+    setTimeout(() => {
+      document.getElementById('welcomeOverlay').style.display = 'none';
+    }, 900);
+  }
+
+  // ── Login modal ────────────────────────────────────────────────
+  function openLogin() {
+    document.getElementById('loginOverlay').classList.add('open');
+    setTimeout(() => document.getElementById('loginUser').focus(), 200);
+  }
+
+  function closeLogin() {
+    document.getElementById('loginOverlay').classList.remove('open');
+    document.getElementById('loginError').classList.remove('show');
+  }
+
+  function doLogin() {
+    const u   = document.getElementById('loginUser').value.trim();
+    const p   = document.getElementById('loginPass').value;
+    const err = document.getElementById('loginError');
+
+    const data = Auth.login(u, p);
+    if (data) {
+      err.classList.remove('show');
+      closeLogin();
+      dismissOverlay();
+      updateNav();
+      // Pass token in URL so tickets page can read it regardless of file:// origin isolation
+      const token = btoa(encodeURIComponent(JSON.stringify(data)));
+      window.location.href = `tickets/index.html?auth=${token}`;
+    } else {
+      err.classList.add('show');
+      document.getElementById('loginPass').value = '';
+      document.getElementById('loginPass').focus();
+    }
+  }
+
+  function doLogout() {
+    Auth.logout();
+    updateNav();
+    closeDropdown();
+    const ov = document.getElementById('welcomeOverlay');
+    ov.style.display = 'flex';
+    ov.classList.remove('fade-out');
+  }
+
+  // Enter key submits login
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && document.getElementById('loginOverlay').classList.contains('open')) {
+      doLogin();
+    }
+    if (e.key === 'Escape') {
+      closeLogin();
+      closeDropdown();
+    }
+  });
+
+  // Click outside login box closes it
+  document.getElementById('loginOverlay').addEventListener('click', function(e) {
+    if (e.target === this) closeLogin();
+  });
+
+  // ── User dropdown ──────────────────────────────────────────────
+  function toggleDropdown() {
+    const dd  = document.getElementById('navDropdown');
+    const btn = document.getElementById('navUserBtn');
+    const isOpen = dd.classList.toggle('open');
+    btn.classList.toggle('open', isOpen);
+  }
+
+  function closeDropdown() {
+    document.getElementById('navDropdown')?.classList.remove('open');
+    document.getElementById('navUserBtn')?.classList.remove('open');
+  }
+
+  document.addEventListener('click', e => {
+    const user = document.getElementById('navUser');
+    if (user && !user.contains(e.target)) closeDropdown();
+  });
+
+  // ── Update nav based on auth state ────────────────────────────
+  function updateNav() {
+    const session = Auth.session();
+    const loginBtn = document.getElementById('navLoginBtn');
+    const navUser  = document.getElementById('navUser');
+    const footerOps  = document.getElementById('footerOpsLink');
+    const footerDocs = document.getElementById('footerDocsLink');
+
+    if (session) {
+      // Logged in
+      loginBtn.style.display = 'none';
+      navUser.style.display  = 'block';
+      document.getElementById('navUserName').textContent  = session.displayName.split(' ')[0];
+      document.getElementById('dropdownName').textContent = session.displayName;
+      if (footerOps)  footerOps.style.display  = 'block';
+      if (footerDocs) footerDocs.style.display = 'block';
+    } else {
+      // Logged out
+      loginBtn.style.display = '';
+      navUser.style.display  = 'none';
+      if (footerOps)  footerOps.style.display  = 'none';
+      if (footerDocs) footerDocs.style.display = 'none';
+    }
+  }
+
+  // ── Init ──────────────────────────────────────────────────────
+  (function init() {
+    const params = new URLSearchParams(window.location.search);
+
+    // If redirected back from tickets page (login required)
+    if (params.get('login') === 'required') {
+      dismissOverlay();
+      setTimeout(openLogin, 300);
+    }
+
+    // Already logged in — skip overlay and show admin nav
+    if (Auth.isLoggedIn()) {
+      document.getElementById('welcomeOverlay').style.display = 'none';
+    }
+
+    updateNav();
+  })();
+  </script>
+
+</body>
+</html>
