@@ -2358,15 +2358,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const footerDocs = document.getElementById('footerDocsLink');
 
     if (session) {
-      // Logged in
+      // Embed auth token in every link to tickets — works on file:// and GitHub Pages
+      const token = btoa(encodeURIComponent(JSON.stringify(session)));
+      const ticketsUrl = `tickets/index.html?auth=${token}`;
+
       loginBtn.style.display = 'none';
       navUser.style.display  = 'block';
       document.getElementById('navUserName').textContent  = session.displayName.split(' ')[0];
       document.getElementById('dropdownName').textContent = session.displayName;
-      if (footerOps)  footerOps.style.display  = 'block';
-      if (footerDocs) footerDocs.style.display = 'block';
+
+      // Update all dropdown links to carry the token
+      document.querySelectorAll('.nav__dropdown a[href*="tickets"]').forEach(a => {
+        a.href = ticketsUrl;
+      });
+      if (footerOps)  { footerOps.style.display  = 'block'; footerOps.href  = ticketsUrl; }
+      if (footerDocs) { footerDocs.style.display = 'block'; footerDocs.href = ticketsUrl; }
     } else {
-      // Logged out
       loginBtn.style.display = '';
       navUser.style.display  = 'none';
       if (footerOps)  footerOps.style.display  = 'none';
